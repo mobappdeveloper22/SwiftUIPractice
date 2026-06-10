@@ -64,6 +64,7 @@ struct HomeScreenView: View {
                 }
             }
             .padding()
+            // below is useless as we are using custom now
             .toolbar {
                 
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -97,6 +98,13 @@ struct HomeScreenView: View {
             .navigationDestination(for: AppRoute.self) { route in
                 AppRouter.destination(for: route, path: $navigationPath)
             }
+            .customNavBar(title: "Home Page", showDelete: true, showSearch: true, onDelete: {
+                print("delete button clicked")
+                navigationPath.append(AppRoute.deleteButtonEvent)
+            }, onSearch: {
+                print("search button clicked")
+                navigationPath.append(AppRoute.searchButtonEvent("Search"))
+            })
 
         }
     }

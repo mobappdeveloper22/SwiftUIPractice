@@ -37,8 +37,10 @@ struct HomeDetailsView: View {
                     .homeButtonUI()
             }
             
+            Spacer()
+            
         }
-        
+        .customNavBar(title: "\(title) Page", showBack: true)
         
         .toolbar {
             

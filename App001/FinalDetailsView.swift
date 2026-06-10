@@ -15,11 +15,18 @@ struct FinalDetailsView: View {
     
     var body: some View {
         
-        Text("Final Details page...")
-        Spacer()
-            .frame(height: 10)
-        Text("\(title) Page")
-        Spacer()
+        VStack {
+            Spacer()
+                .frame(height: 10)
+            Text("Final Details page...")
+            Spacer()
+                .frame(height: 10)
+            Text("\(title) Page")
+            Spacer()
+            
+        }
+        .customNavBar(title: "\(title) Page", showBack: true)
+            
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Final \(title) Page")
