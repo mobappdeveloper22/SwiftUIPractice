@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeDetailsView: View {
     
-    // @State private var homeDetailsViewNavigationPath = NavigationPath()
     @Binding var navigationPath: NavigationPath
+    @Binding var selectedTab: Int
     
     let title : String
 
@@ -56,5 +56,5 @@ struct HomeDetailsView: View {
 }
 
 #Preview {
-    HomeDetailsView(navigationPath: .constant(NavigationPath()), title: "title_comes_here")
+    HomeDetailsView(navigationPath: .constant(NavigationPath()), selectedTab: .constant(0), title: "title_comes_here")
 }

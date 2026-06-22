@@ -11,6 +11,8 @@ struct HomeScreenView: View {
     
     @State private var navigationPath = NavigationPath()
     
+    @Binding var selectedTab: Int
+    
     var body: some View {
         
         NavigationStack(path: $navigationPath) {
@@ -96,7 +98,7 @@ struct HomeScreenView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: AppRoute.self) { route in
-                AppRouter.destination(for: route, path: $navigationPath)
+                AppRouter.destination(for: route, path: $navigationPath, selectedTab: $selectedTab)
             }
             .customNavBar(title: "Home Page", showDelete: true, showSearch: true, onDelete: {
                 print("delete button clicked")
@@ -111,5 +113,5 @@ struct HomeScreenView: View {
 }
 
 #Preview {
-    HomeScreenView()
+    HomeScreenView(selectedTab: .constant(0))
 }

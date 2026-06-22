@@ -12,5 +12,6 @@ enum AppRoute: Hashable {
     case deleteButtonEvent
     case searchButtonEvent(String)
     case homeDetailsButton(String)
+    case apiDetail(Title)
 }
 

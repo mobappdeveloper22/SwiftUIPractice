@@ -12,7 +12,7 @@ struct TMDBAPIObject: Decodable {
 }
 
 
-class Title: Decodable, Identifiable {
+class Title: Decodable, Identifiable, Hashable {
     
     var id: Int?
     var title: String?
@@ -45,8 +45,16 @@ class Title: Decodable, Identifiable {
         posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
     }
     
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)  // use unique identifier
+    }
+    
+    static func == (lhs: Title, rhs: Title) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     static var previewTitles = [
-        Title(id: 1, title: "BeetleJuice", name: "BeetleJuice", overview: "A movie about BeetleJuice", posterPath: Constants.testTitleURL1),
+        Title(id: 1, title: "BeetleJuice", name: "BeetleJuice", overview: "A movie about BeetleJuice and so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...\n\nand so on to check in details how it goes and so on...", posterPath: Constants.testTitleURL1),
         Title(id: 2, title: "Pulp Fiction", name: "Pulp Fiction", overview: "A movie about Pulp Fiction", posterPath: Constants.testTitleURL2),
         Title(id: 3, title: "The Dark Knight", name: "The Dark Knight", overview: "A movie about the Dark Knight", posterPath: Constants.testTitleURL3),
         Title(id: 4, title: "BeetleJuice", name: "BeetleJuice", overview: "A movie about BeetleJuice", posterPath: Constants.testTitleURL4),

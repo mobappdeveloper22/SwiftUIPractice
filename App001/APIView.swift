@@ -10,6 +10,7 @@ import SwiftUI
 struct APIView: View {
     
     @State private var apiNavigationPath = NavigationPath()
+    @Binding var selectedTab: Int
     
     var apiViewModel = APIViewModel()
     
@@ -53,7 +54,7 @@ struct APIView: View {
                                 .contentShape(Rectangle())
                                 .onTapGesture {
                                     let _ = printLog(text: "on click on movie == \(title.title ?? "=")")
-                                    // apiNavigationPath.append(.detail(title: title))
+                                    apiNavigationPath.append(AppRoute.apiDetail(title))
                                 }
                             } placeholder: {
                                 ProgressView()
@@ -77,7 +78,7 @@ struct APIView: View {
                 }
                 .customNavBar(title: "API Page")
                 .navigationDestination(for: AppRoute.self) { route in
-                    AppRouter.destination(for: route, path: $apiNavigationPath)
+                    AppRouter.destination(for: route, path: $apiNavigationPath, selectedTab: $selectedTab)
                 }
         }
         
@@ -86,5 +87,5 @@ struct APIView: View {
 }
 
 #Preview {
-    APIView(titles: Title.previewTitles)
+    APIView(selectedTab: .constant(0), titles: Title.previewTitles)
 }
